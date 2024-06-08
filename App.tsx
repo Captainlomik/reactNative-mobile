@@ -18,7 +18,7 @@ export default function App() {
     //     ToastAndroid.CENTER
     //   )
     // }
-    setError('Неверный логи и пароль')
+    setError('Неверный логин и пароль')
   }
 
   return (
