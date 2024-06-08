@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Alert, Dimensions, ToastAndroid } from 'react-native';
 import { Input } from './shared/input';
 import { Button } from './shared/button';
