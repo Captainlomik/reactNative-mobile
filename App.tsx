@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Alert, Dimensions, ToastAndroid} from 'react-native';
+import { StyleSheet, Text, View, Image, Alert, Dimensions, ToastAndroid } from 'react-native';
 import { Input } from './shared/input';
 import { Button } from './shared/button';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -19,6 +19,9 @@ export default function App() {
     //   )
     // }
     setError('Неверный логин и пароль')
+    setTimeout(() => {
+      setError(undefined)
+    }, 4000)
   }
 
   return (
