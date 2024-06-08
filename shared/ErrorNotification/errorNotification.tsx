@@ -22,7 +22,7 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 
         const timerId = setTimeout(() => {
             setIsShown(false)
-        }, 3000)
+        }, 3000);
         return () => {
             clearTimeout(timerId)
         }
@@ -44,6 +44,7 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 const styles = StyleSheet.create({
     error: {
         position: 'absolute',
+        top:60,
         width: Dimensions.get('screen').width,
         backgroundColor: Colors.red,
         padding: 15,

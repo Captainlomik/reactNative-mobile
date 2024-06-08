@@ -18,7 +18,7 @@ export default function App() {
     //     ToastAndroid.CENTER
     //   )
     // }
-    setError('Неверный логин и пароль')
+    setError('Неверный логин или пароль')
     setTimeout(() => {
       setError(undefined)
     }, 4000)
