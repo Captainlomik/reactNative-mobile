@@ -4,9 +4,9 @@ import { Colors, Fonts, Radius } from "./tokens";
 export function Button({ text, ...props }: PressableProps & { text: string }) {
     const animatedValue = new Animated.Value(100)
     // const color = animatedValue.interpolate({
-	// 	inputRange: [0, 100],
-	// 	outputRange: ["#45281", "#6C38CC"],
-	// });
+    // 	inputRange: [0, 100],
+    // 	outputRange: ["#45281", "#6C38CC"],
+    // });
 
 
     const fadeIn = (e: GestureResponderEvent) => {
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.white,
-        fontSize: Fonts.f18
+        fontSize: Fonts.f18,
+        fontFamily: 'FiraSans'
     }
 })
