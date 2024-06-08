@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View, Image, Alert, Dimensions, ToastAndroid } from 'react-native';
-import { Input } from './shared/input';
-import { Button } from './shared/button';
+import { Input } from '../shared/input';
+import { Button } from '../shared/button';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { Gaps } from './shared/tokens';
-import { ErrorNotification } from './shared/ErrorNotification/errorNotification';
+import { Gaps } from '../shared/tokens';
+import { ErrorNotification } from '../shared/ErrorNotification/errorNotification';
 import { useState } from 'react';
+import { Link } from 'expo-router';
 
-export default function App() {
+
+export default function Login() {
   const [erorr, setError] = useState<string | undefined>()
 
   const alert = () => {
@@ -29,14 +31,14 @@ export default function App() {
       <View style={styles.content}>
         <Text>School </Text>
         <Image style={styles.logo}
-          source={require('./assets/logo.png')}
+          source={require('../assets/logo.png')}
           resizeMode='contain' />
         <View style={styles.form}>
           <Input placeholder='Email' />
           <Input isPassword placeholder='Пароль' />
           <Button text='Войти' onPress={alert} />
         </View>
-        <Text> Восстановить пароль </Text>
+        <Link href={'/restore'}> <Text> Восстановить пароль</Text> </Link>
       </View>
     </View>
   );
