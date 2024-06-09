@@ -2,15 +2,15 @@ import { SplashScreen, Stack } from "expo-router";
 import { Colors } from "../shared/tokens";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from 'expo-font';
-import { SafeAreaProvider, useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
+import { SafeAreaProvider,} from "react-native-safe-area-context";
 import { useEffect } from "react";
 
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-    const insets = useSafeAreaInsets();
+    // const insets = useSafeAreaInsets();
     const [loaded, error] = useFonts({
-        FiraSans: require('../assets/font/FiraSans-Regular.ttf'),
+        FiraSans: require('../assets/fonts/FiraSans-Regular.ttf'),
         FiraSansSemiBold: require('../assets/fonts/FiraSans-SemiBold.ttf')
     })
 
@@ -37,11 +37,10 @@ export default function RootLayout() {
                 statusBarColor: Colors.black,
                 contentStyle: {
                     backgroundColor: Colors.black,
-                    paddingTop: insets.top,
                 },
                 headerShown: false
             }}>
-                <Stack.Screen name="index" />
+                <Stack.Screen name="login" />
                 <Stack.Screen name="restore" options={{
                     presentation: 'modal',
                 }} />
