@@ -6,6 +6,7 @@ import { Gaps } from '../shared/tokens';
 import { ErrorNotification } from '../shared/ErrorNotification/errorNotification';
 import { useState } from 'react';
 import { Link } from 'expo-router';
+import { CustomLink } from '../shared/CustomLink';
 
 
 export default function Login() {
@@ -38,7 +39,7 @@ export default function Login() {
           <Input isPassword placeholder='Пароль' />
           <Button text='Войти' onPress={alert} />
         </View>
-        <Link href={'/restore'}> <Text> Восстановить пароль</Text> </Link>
+        <CustomLink href={'/restore'} text={'Восстановить пароль'}/>
       </View>
     </View>
   );
