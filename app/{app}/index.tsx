@@ -1,31 +1,19 @@
 import { View, Text } from "react-native";
-import { profileAtom } from "../entities/user/model/user.state";
-import { useAtom } from "jotai";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect } from "react";
-import axios from "axios";
-import { API } from "../entities/auth/model/api";
-import { IAuthResponse } from "../entities/auth/model/auth.interfaces";
+import { Button } from "../../shared/button";
+import { useSetAtom } from "jotai";
+import { logoutAtom } from "../entities/auth/model/auth.state";
+
+
 
 //Main page Courses
 
 export default function MyCourses() {
-    const [profile] = useAtom(profileAtom)
 
-    const login = async () => {
-        const { data } = await axios.post<IAuthResponse>(API.login, {
-            email: 'vasia@pupkin.ru',
-            password: '12345678'
-        })
-    }
-
-    useEffect(() => {
-        login()
-    }, [])
-
+    const logout = useSetAtom(logoutAtom)
     return (
         <View>
-            <Text>{profile.profile?.name}</Text>
+            <Text>Index</Text>
+            <Button text="Выход" onPress={logout} isloading={false} ></Button>
         </View>
     )
 }
