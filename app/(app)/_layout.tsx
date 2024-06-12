@@ -1,11 +1,12 @@
-import { Redirect, Stack } from "expo-router";
+import { Redirect} from "expo-router";
 import { useAtomValue } from "jotai";
 import { authAtom } from "../entities/auth/model/auth.state";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 import { Colors, Fonts } from "../../shared/tokens";
-import { Text } from "react-native-svg";
 import { MenuButton } from "../../features/layout/ui/MenuButton";
+import { CustomDrawer } from "../entities/layout/ui/CustomDrawer";
+
 
 export default function AppLayout() {
     const { access_token } = useAtomValue(authAtom);
@@ -15,7 +16,9 @@ export default function AppLayout() {
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <Drawer screenOptions={({ navigation }) => ({
+            <Drawer 
+            drawerContent={(props)=> <CustomDrawer {...props}/>}
+            screenOptions={({ navigation }) => ({
                 headerStyle: {
                     backgroundColor: Colors.blacklight,
                     shadowColor: Colors.blacklight,
@@ -32,7 +35,7 @@ export default function AppLayout() {
                     fontFamily: Fonts.regular,
                     fontSize: Fonts.f20,
                 },
-                headerTitleAlign: 'center'
+                headerTitleAlign: 'center',
             })}>
                 <Drawer.Screen name="index" options={{
                     title: "Мои курсы",
