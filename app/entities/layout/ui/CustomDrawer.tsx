@@ -2,18 +2,36 @@ import { DrawerContentComponentProps, DrawerContentScrollView } from "@react-nav
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Colors } from "../../../../shared/tokens";
 import { CustomLink } from "../../../../shared/CustomLink";
-import { CloseDrawer } from "./closeDrawer";
-import { useSetAtom } from "jotai";
+import { CloseDrawer } from "../../../../features/layout/ui/closeDrawer";
+import { useAtom, useSetAtom } from "jotai";
 import { logoutAtom } from "../../auth/model/auth.state";
+import { loadProfileAtom } from "../../user/model/user.state";
+import { useEffect } from "react";
+import { UserMenu } from "../../user/ui/UserMenu";
+import CoursesIcon from "../../../../assets/menu/courses";
+import ProfileIcon from "../../../../assets/menu/profile";
+import { MenuItem } from "./MenuItem";
 
+const MENU = [
+    { text: 'Курсы', icon: <CoursesIcon />, path: 'index' },
+    { text: 'Профиль', icon: <ProfileIcon />, path: 'profile' }
+]
 
 export function CustomDrawer(props: DrawerContentComponentProps) {
     const logout = useSetAtom(logoutAtom)
+    const [profile, loadProfile] = useAtom(loadProfileAtom)
+
+    useEffect(() => {
+        loadProfile()
+    }, [])
 
     return <DrawerContentScrollView {...props} contentContainerStyle={styles.scrollView}>
         <View style={styles.content}>
             <CloseDrawer {...props.navigation} />
-            <Text></Text>
+            <UserMenu user={profile.profile} />
+            {MENU.map(menu => (
+                <MenuItem key={menu.path} {...menu} drawer={props}></MenuItem>
+            ))}
         </View>
         <View style={styles.footer}>
             <Image
