@@ -10,7 +10,6 @@ export function CustomLink({ text, ...props }: LinkProps & { text: string }) {
         </Link>
     )
 }
-
 const styles = StyleSheet.create({
     link: {
         fontSize: Fonts.f18,
