@@ -1,16 +1,16 @@
 import { DrawerContentComponentProps, DrawerContentScrollView } from "@react-navigation/drawer";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { Colors } from "../../../../shared/tokens";
-import { CustomLink } from "../../../../shared/CustomLink";
-import { CloseDrawer } from "../../../../features/layout/ui/closeDrawer";
+import { Colors } from "../../../shared/tokens";
+import { CustomLink } from "../../../shared/CustomLink";
+import { CloseDrawer } from "../../../features/layout/ui/closeDrawer";
 import { useAtom, useSetAtom } from "jotai";
-import { logoutAtom } from "../../auth/model/auth.state";
-import { loadProfileAtom } from "../../user/model/user.state";
+import { logoutAtom } from "../../../app/entities/auth/model/auth.state";
+import { loadProfileAtom } from "../../../app/entities/user/model/user.state";
 import { useEffect } from "react";
-import { UserMenu } from "../../user/ui/UserMenu";
-import CoursesIcon from "../../../../assets/menu/courses";
-import ProfileIcon from "../../../../assets/menu/profile";
-import { MenuItem } from "./MenuItem";
+import { UserMenu } from "../../../app/entities/user/ui/UserMenu";
+import CoursesIcon from "../../../assets/menu/courses";
+import ProfileIcon from "../../../assets/menu/profile";
+import { MenuItem } from "../../../app/entities/layout/ui/MenuItem";
 
 const MENU = [
     { text: 'Курсы', icon: <CoursesIcon />, path: 'index' },
