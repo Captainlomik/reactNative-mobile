@@ -34,10 +34,6 @@ export function CustomDrawer(props: DrawerContentComponentProps) {
             ))}
         </View>
         <View style={styles.footer}>
-            <Image
-                style={styles.logo}
-                source={require('../../../assets/logo.png')}
-                resizeMode='contain' />
             <CustomLink text='Выход' onPress={() => logout()} href={'/login'} />
         </View>
     </DrawerContentScrollView>
