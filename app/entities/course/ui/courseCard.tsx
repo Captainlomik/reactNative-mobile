@@ -5,6 +5,7 @@ import { Button } from "../../../../shared/button";
 import { Colors, Fonts, Gaps, Radius } from "../../../../shared/tokens";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
+import { ProgressBar } from "../progressBar";
 
 export function CourseCard({ image, shortTitle, courseOnDirection, alias, tariffs }: StudentCourseDescription) {
     return <View style={styles.card}>
@@ -14,6 +15,7 @@ export function CourseCard({ image, shortTitle, courseOnDirection, alias, tariff
             style={styles.image}
             height={200} />
         <View style={styles.header}>
+            <ProgressBar totalLessons={120} passedLessons={40} />
             <Text style={styles.title}>{shortTitle}</Text>
             <View style={styles.chips}>
                 {courseOnDirection.length > 0 && courseOnDirection.map(c =>
@@ -24,7 +26,7 @@ export function CourseCard({ image, shortTitle, courseOnDirection, alias, tariff
                 <Text style={styles.tarif}> Тариф &laquo;{tariffs[0].name}&raquo; </Text>
             }>
                 <LinearGradient colors={["#D77BE5", "#6C38CC"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
-                    <Text style={{...styles.tarif, ...styles.tarifWithOpacity}}> Тариф &laquo;{tariffs[0].name}&raquo; </Text>
+                    <Text style={{ ...styles.tarif, ...styles.tarifWithOpacity }}> Тариф &laquo;{tariffs[0].name}&raquo; </Text>
                 </LinearGradient>
             </MaskedView>
         </View>

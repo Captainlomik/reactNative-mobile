@@ -2,13 +2,15 @@ export const Colors = {
     black: '#16171D',
     blacklight: '#1E1F29',
     gray: '#AFB2BF',
+    grayLight: '#DAD9DE',
     violetDark: '#2E2D3D',
     primary: '#6C38CC',
     primaryHover: '#45281',
     link: '#A97BFF',
     white: '#FAFAFA',
     red: '#CC384E',
-    border: '#4D5064'
+    border: '#4D5064',
+    secondary: '#E47AD5'
 
 }
 
@@ -22,11 +24,12 @@ export const Gaps = {
 }
 
 export const Radius = {
-    r10: 10, 
+    r10: 10,
     r17: 17
 }
 
 export const Fonts = {
+    f12: 12,
     f14: 14,
     f16: 16,
     f18: 18,
