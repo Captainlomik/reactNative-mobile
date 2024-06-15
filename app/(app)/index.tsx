@@ -8,9 +8,7 @@ import { FlatList, RefreshControl, ScrollView } from "react-native-gesture-handl
 import { StudentCourseDescription } from "../entities/course/course.model";
 
 
-
 //Main page Courses
-
 export default function MyCourses() {
 
     const { isLoading, error, courses } = useAtomValue(courseAtom)
@@ -22,8 +20,8 @@ export default function MyCourses() {
 
     const renderCourse = ({ item }: { item: StudentCourseDescription }) => {
         return (
-            <View>
-                <CourseCard {...item} />
+            <View style={styles.item}>
+                <CourseCard key={item.id} {...item} />
             </View>
         )
     }

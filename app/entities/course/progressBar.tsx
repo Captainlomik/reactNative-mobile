@@ -8,10 +8,10 @@ export function ProgressBar({ totalLessons, passedLessons }: { totalLessons: num
     return (<View style={styles.wrapper}>
         <View style={styles.head}>
             <Text style={styles.textPercent}>{percent}%</Text>
-            <Text style={styles.textCount}>{passedLessons / totalLessons}</Text>
-            <View style={styles.bar}>
-                <View style={{ ...styles.progress, width: `${percent}%` }} />
-            </View>
+            <Text style={styles.textCount}>{passedLessons}/{totalLessons}</Text>
+        </View>
+        <View style={styles.bar}>
+            <View style={{ ...styles.progress, width: `${percent}%` }} />
         </View>
     </View>)
 }
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.secondary,
     },
     head: {
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 6,

@@ -32,7 +32,7 @@ export function CourseCard({ image, shortTitle, courseOnDirection, alias, tariff
         </View>
         <View style={styles.footer}>
             <Button text="Купить" onPress={() => {
-                Linking.openURL(`https://purplrschool.ru/course/${alias}`)
+                Linking.openURL(`https://purpleschool.ru/course/${alias}`)
             }} />
         </View>
     </View >
