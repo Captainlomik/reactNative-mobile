@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Alert, Dimensions, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, Image, Alert, Dimensions, ToastAndroid, KeyboardAvoidingView, Platform } from 'react-native';
 import { Input } from '../shared/input';
 import { Button } from '../shared/button';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -9,6 +9,8 @@ import { CustomLink } from '../shared/CustomLink';
 import { loginAtom } from './entities/auth/model/auth.state';
 import { useAtom } from 'jotai';
 import { router } from 'expo-router';
+import { useScreenOrientation } from '../shared/hooks';
+import { Orientation } from 'expo-screen-orientation';
 
 
 export default function Login() {
@@ -16,6 +18,8 @@ export default function Login() {
   const [email, setEmail] = useState<string>()
   const [password, setPassword] = useState<string>()
   const [{ access_token, isLoading, error }, login] = useAtom(loginAtom)
+  const orientation = useScreenOrientation()
+
 
 
   const submit = () => {
@@ -46,18 +50,28 @@ export default function Login() {
   return (
     <View style={styles.container}>
       <ErrorNotification error={localErorr} />
-      <View style={styles.content}>
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.content}>
         <Text>School </Text>
         <Image style={styles.logo}
           source={require('../assets/logo.png')}
           resizeMode='contain' />
         <View style={styles.form}>
-          <Input placeholder='Email' onChangeText={setEmail} />
-          <Input isPassword placeholder='Пароль' onChangeText={setPassword} />
+          <View style={{ ...styles.inputs, flexDirection: orientation === Orientation.PORTRAIT_UP ? 'column' : 'row' }}>
+            <Input style={{
+              width: orientation === Orientation.PORTRAIT_UP ? 'auto' : Dimensions.get('window').width / 2 - 16 - 48,
+            }}
+              placeholder='Email'
+              onChangeText={setEmail} />
+            <Input style={{
+              width: orientation === Orientation.PORTRAIT_UP ? 'auto' : Dimensions.get('window').width / 2 - 16 - 48,
+            }}
+              isPassword placeholder='Пароль'
+              onChangeText={setPassword} />
+          </View>
           <Button text='Войти' onPress={submit} isloading={isLoading} />
         </View>
         <CustomLink href={'/restore'} text={'Восстановить пароль'} />
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -77,7 +91,8 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     gap: Gaps.g16,
   },
-  logo: {
-
-  }
+  inputs: {
+    gap: Gaps.g16
+  },
+  logo: {},
 });
