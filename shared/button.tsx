@@ -1,7 +1,7 @@
 import { Pressable, PressableProps, Text, StyleSheet, Animated, GestureResponderEvent, ActivityIndicator } from "react-native";
 import { Colors, Fonts, Radius } from "./tokens";
 
-export function Button({ text, isloading, ...props }: PressableProps & { text: string; isloading: boolean }) {
+export function Button({ text, isloading, ...props }: PressableProps & { text: string; isloading?: boolean }) {
     const animatedValue = new Animated.Value(100)
     // const color = animatedValue.interpolate({
     // 	inputRange: [0, 100],

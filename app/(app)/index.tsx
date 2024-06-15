@@ -1,7 +1,11 @@
-import { View, Text } from "react-native";
-import { Button } from "../../shared/button";
-import { useSetAtom } from "jotai";
-import { logoutAtom } from "../entities/auth/model/auth.state";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import { useAtomValue, useSetAtom } from "jotai";
+import { courseAtom, loadCourseAtom } from "../entities/course/course.state";
+import { useEffect } from "react";
+import { CourseCard } from "../entities/course/ui/courseCard";
+import { Colors, Gaps } from "../../shared/tokens";
+import { FlatList, RefreshControl, ScrollView } from "react-native-gesture-handler";
+import { StudentCourseDescription } from "../entities/course/course.model";
 
 
 
@@ -9,11 +13,43 @@ import { logoutAtom } from "../entities/auth/model/auth.state";
 
 export default function MyCourses() {
 
-    const logout = useSetAtom(logoutAtom)
+    const { isLoading, error, courses } = useAtomValue(courseAtom)
+    const loadCourse = useSetAtom(loadCourseAtom)
+
+    useEffect(() => {
+        loadCourse()
+    }, [])
+
+    const renderCourse = ({ item }: { item: StudentCourseDescription }) => {
+        return (
+            <View>
+                <CourseCard {...item} />
+            </View>
+        )
+    }
+
     return (
-        <View>
-            <Text>Index</Text>
-            <Button text="Выход" onPress={logout} isloading={false} ></Button>
-        </View>
+        <>
+            {isLoading && <ActivityIndicator style={styles.activity} size={'large'} color={Colors.primary} />}
+            {courses.length > 0 &&
+                <FlatList
+                    data={courses}
+                    renderItem={renderCourse}
+                    keyExtractor={(item) => item.id.toString()}
+                    refreshControl={<RefreshControl 
+                    refreshing={isLoading} 
+                    onRefresh={loadCourse}
+                    tintColor={Colors.primary}
+                    titleColor={Colors.primary} />} />}
+        </>
     )
 }
+
+const styles = StyleSheet.create({
+    item: {
+        padding: 20,
+    },
+    activity:{
+        marginTop: 30,
+    }
+})
