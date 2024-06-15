@@ -3,20 +3,21 @@ import { User } from "../model/user.model";
 import { Fonts, Gaps, Colors } from "../../../../shared/tokens";
 
 export function UserMenu({ user }: { user: User | null }) {
-    if (!user) { return };
+    if (!user) { return; };
+    
 
     return (<View style={styles.container}>
-        {user.photo ? (
+        {user.profile.photo ? (
             <Image
                 style={styles.image}
                 source={{
-                    uri: user.photo
+                    uri: user.profile.photo
                 }}
             />) :
             (<Image source={require('../../../../assets/images/avatar.png')}
              />)
         }
-        <Text style={styles.name}>{user.name} {user.surname}</Text>
+        <Text style={styles.name}>{user.profile.name} -{user.profile.surname}</Text>
     </View>)
 }
 

@@ -18,25 +18,25 @@ const MENU = [
 ]
 
 export function CustomDrawer(props: DrawerContentComponentProps) {
-    const logout = useSetAtom(logoutAtom)
-    const [profile, loadProfile] = useAtom(loadProfileAtom)
+    const logout = useSetAtom(logoutAtom);
+    const [profile, loadProfile] = useAtom(loadProfileAtom);
 
     useEffect(() => {
-        loadProfile()
-    }, [])
-
-    return <DrawerContentScrollView {...props} contentContainerStyle={styles.scrollView}>
-        <View style={styles.content}>
-            <CloseDrawer {...props.navigation} />
-            <UserMenu user={profile.profile} />
-            {MENU.map(menu => (
-                <MenuItem key={menu.path} {...menu} drawer={props}></MenuItem>
-            ))}
-        </View>
-        <View style={styles.footer}>
-            <CustomLink text='Выход' onPress={() => logout()} href={'/login'} />
-        </View>
-    </DrawerContentScrollView>
+        loadProfile();
+    }, []);
+    return (
+        <DrawerContentScrollView {...props} contentContainerStyle={styles.scrollView}>
+            <View style={styles.content}>
+                <CloseDrawer {...props.navigation} />
+                <UserMenu user={profile.profile} />
+                {MENU.map(menu => (
+                    <MenuItem key={menu.path} {...menu} drawer={props}></MenuItem>
+                ))}
+            </View>
+            <View style={styles.footer}>
+                <CustomLink text='Выход' onPress={() => logout()} href={'/login'} />
+            </View>
+        </DrawerContentScrollView>)
 }
 
 const styles = StyleSheet.create({

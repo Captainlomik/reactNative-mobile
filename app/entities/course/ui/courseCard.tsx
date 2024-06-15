@@ -7,8 +7,8 @@ import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
 import { ProgressBar } from "../progressBar";
 
-export function CourseCard({ image, shortTitle, courseOnDirection, alias, tariffs }: StudentCourseDescription) {
-    return <View style={styles.card}>
+export function CourseCard({ id, image, shortTitle, courseOnDirection, alias, tariffs }: StudentCourseDescription) {
+    return <View style={styles.card} >
         <Image source={{
             uri: image,
         }}
@@ -19,7 +19,7 @@ export function CourseCard({ image, shortTitle, courseOnDirection, alias, tariff
             <Text style={styles.title}>{shortTitle}</Text>
             <View style={styles.chips}>
                 {courseOnDirection.length > 0 && courseOnDirection.map(c =>
-                    <Chip text={c.direction.name} />
+                    <Chip text={c.direction.name} key={c.direction.name} />
                 )}
             </View>
             <MaskedView maskElement={

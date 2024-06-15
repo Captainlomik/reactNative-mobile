@@ -30,8 +30,8 @@ export default function Profile() {
     }
 
     useEffect(() => {
-        if (profile && profile.profile?.photo) {
-            setImage(profile.profile?.photo)
+        if (profile && profile.profile?.profile.photo) {
+            setImage(profile.profile?.profile.photo)
         }
     }, [])
 
@@ -46,8 +46,8 @@ export default function Profile() {
                 )}
                 <ImageUploader onUpload={setImage} onError={(e) => console.log(e)} />
             </View>
-            <Button text='Сохранить' onPress={submitProfile} isloading={false}></Button>
-            <Button text='Поделиться' onPress={shareProfile} isloading={false}></Button>
+            <Button text='Сохранить' onPress={submitProfile} ></Button>
+            <Button text='Поделиться' onPress={shareProfile} ></Button>
         </View>
     )
 }

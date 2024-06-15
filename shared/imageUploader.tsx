@@ -95,7 +95,6 @@ export function ImageUploader({ onUpload, onError }: imageUploaderProps) {
         <View style={styles.container}>
             <UploadIcon />
             <Text style={styles.text}>Загрузить изображение</Text>
-
         </View>
     </Pressable>
 }
