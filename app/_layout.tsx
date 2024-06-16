@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { useFonts } from 'expo-font';
 import { SafeAreaProvider,} from "react-native-safe-area-context";
 import { useEffect } from "react";
+import { Notification } from "../shared/notification";
 
 SplashScreen.preventAutoHideAsync()
 
@@ -32,6 +33,7 @@ export default function RootLayout() {
 
     return (
         <SafeAreaProvider>
+            <Notification />
             <StatusBar style="light" />
             <Stack screenOptions={{
                 statusBarColor: Colors.black,
