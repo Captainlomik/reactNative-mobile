@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, StyleSheet, Alert, Image } from "react-native";
+import { View, StyleSheet, Alert, Image, Platform } from "react-native";
 import { ImageUploader } from "../../shared/imageUploader";
 import { Gaps } from "../../shared/tokens";
 import { updateProfileAtom } from "../entities/user/model/user.state";
@@ -8,7 +8,6 @@ import { Button } from "../../shared/button";
 import * as Sharing from 'expo-sharing'
 
 export default function Profile() {
-
     const [image, setImage] = useState<string | null>(null)
     const [profile, updateProfile] = useAtom(updateProfileAtom);
 
@@ -30,8 +29,8 @@ export default function Profile() {
     }
 
     useEffect(() => {
-        if (profile && profile.profile?.profile.photo) {
-            setImage(profile.profile?.profile.photo)
+        if (profile && profile.profile?.photo) {
+            setImage(profile.profile?.photo)
         }
     }, [])
 
@@ -47,7 +46,7 @@ export default function Profile() {
                 <ImageUploader onUpload={setImage} onError={(e) => console.log(e)} />
             </View>
             <Button text='Сохранить' onPress={submitProfile} ></Button>
-            <Button text='Поделиться' onPress={shareProfile} ></Button>
+            {Platform.OS === 'ios' && <Button text='Поделиться' onPress={shareProfile} ></Button>}
         </View>
     )
 }

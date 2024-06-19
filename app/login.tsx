@@ -27,8 +27,16 @@ export default function Login() {
       setLocalError('Не введен email')
       return;
     }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setLocalError('Email не соответсвует формату email@mail.ru')
+      return;
+    }
     if (!password) {
       setLocalError('Не введен пароль');
+      return;
+    }
+    if(password.length < 6){
+      setLocalError('Пароль не может быть менее 6 символов')
       return;
     }
     login({ email, password })
@@ -47,6 +55,7 @@ export default function Login() {
     }
   }, [access_token])
 
+
   return (
     <View style={styles.container}>
       <ErrorNotification error={localErorr} />
@@ -60,6 +69,7 @@ export default function Login() {
             <Input style={{
               width: orientation === Orientation.PORTRAIT_UP ? 'auto' : Dimensions.get('window').width / 2 - 16 - 48,
             }}
+
               placeholder='Email'
               onChangeText={setEmail} />
             <Input style={{
@@ -95,6 +105,6 @@ const styles = StyleSheet.create({
     gap: Gaps.g16
   },
   logo: {
-    width: Platform.select({ios: 220, android: 300})
+    width: Platform.select({ ios: 220, android: 300 })
   },
 });

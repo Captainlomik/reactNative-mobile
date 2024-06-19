@@ -24,6 +24,7 @@ export function CustomDrawer(props: DrawerContentComponentProps) {
     useEffect(() => {
         loadProfile();
     }, []);
+
     return (
         <DrawerContentScrollView {...props} contentContainerStyle={styles.scrollView}>
             <View style={styles.content}>

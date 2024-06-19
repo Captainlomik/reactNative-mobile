@@ -12,36 +12,42 @@ export const profileAtom = atom<UserState>({
 });
 
 export const updateProfileAtom = atom(
-    async (get) => {
-        return get(profileAtom);
-    },
-    async (get, set, { photo }: { photo: string }) => {
-        try {
-            const { access_token } = await get(authAtom);
-            const { data } = await axios.patch<User>(
-                API.profile,
-                { photo, },
-                {
-                    headers: {
-                        Authorization: `Bearer ${access_token}`,
-                    },
-                },
-            );
-            set(profileAtom, {
-                isLoading: false,
-                profile: data,
-                error: null,
-            });
-        } catch (error) {
-            if (error instanceof AxiosError) {
-                set(profileAtom, {
-                    isLoading: false,
-                    profile: null,
-                    error: error.response?.data.message,
-                });
-            }
-        }
-    },
+	async (get) => {
+		return get(profileAtom);
+	},
+	async (get, set, { photo }: { photo: string }) => {
+		try {
+			const { access_token } = await get(authAtom);
+			const { data } = await axios.patch<Profile>(
+				API.profile,
+				{ photo, },
+				{
+					headers: {
+						Authorization: `Bearer ${access_token}`,
+					},
+				},
+			);
+			const user = {
+				id: data.id,
+				name: data.name,
+				surname: data.surname,
+				photo: data.photo,
+			}
+			set(profileAtom, {
+				isLoading: false,
+				profile: user,
+				error: null,
+			});
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				set(profileAtom, {
+					isLoading: false,
+					profile: null,
+					error: error.response?.data.message,
+				});
+			}
+		}
+	},
 );
 
 export const loadProfileAtom = atom(
@@ -56,14 +62,20 @@ export const loadProfileAtom = atom(
 			error: null,
 		});
 		try {
-			const { data } = await axios.get<User>(API.profile, {
+			const { data } = await axios.get<ExternalUser>(API.profile, {
 				headers: {
 					Authorization: `Bearer ${access_token}`,
 				},
 			});
+			const user = {
+				id: data.profile.id,
+				name: data.profile.name,
+				surname: data.profile.surname,
+				photo: data.profile.photo,
+			}
 			set(profileAtom, {
 				isLoading: false,
-				profile: data,
+				profile: user,
 				error: null,
 			});
 		} catch (error) {
@@ -77,8 +89,20 @@ export const loadProfileAtom = atom(
 		}
 	},
 );
+
 export interface UserState {
 	profile: User | null;
 	isLoading: boolean;
 	error: string | null;
+}
+
+interface ExternalUser {
+	profile: Profile
+}
+
+interface Profile {
+	id: number
+	name: string
+	photo: string | undefined
+	surname: string | undefined
 }

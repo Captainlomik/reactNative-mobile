@@ -1,23 +1,25 @@
 import { View, Image, StyleSheet, Text } from "react-native";
 import { User } from "../model/user.model";
 import { Fonts, Gaps, Colors } from "../../../../shared/tokens";
+import { useEffect, useState } from "react";
 
 export function UserMenu({ user }: { user: User | null }) {
     if (!user) { return; };
-    
 
     return (<View style={styles.container}>
-        {user.profile.photo ? (
+        {user && user.photo ? (
             <Image
                 style={styles.image}
                 source={{
-                    uri: user.profile.photo
+                    uri: user.photo
                 }}
             />) :
             (<Image source={require('../../../../assets/images/avatar.png')}
-             />)
+            />)
         }
-        <Text style={styles.name}>{user.profile.name} -{user.profile.surname}</Text>
+
+        <Text style={styles.name}>{user.name} {user.surname}</Text>
+
     </View>)
 }
 
