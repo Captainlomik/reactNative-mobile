@@ -21,6 +21,7 @@ export default function MyCourses() {
     }, [])
 
     const renderCourse = ({ item }: { item: StudentCourseDescription }) => {
+        
         return (
             <View style={styles.item}>
                 <CourseCard key={item.id} {...item} />
@@ -63,9 +64,9 @@ export default function MyCourses() {
         <>
             {isLoading && <ActivityIndicator style={styles.activity} size={'large'} color={Colors.primary} />}
             <Button text="Напомнить" onPress={sheduleNotification} />
-            {courses.length > 0 &&
+            {courses.other && courses.other.length > 0 &&
                 <FlatList
-                    data={courses}
+                    data={courses.other}
                     renderItem={renderCourse}
                     keyExtractor={(item) => item.id.toString()}
                     refreshControl={<RefreshControl

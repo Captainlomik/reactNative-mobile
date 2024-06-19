@@ -46,7 +46,7 @@ export default function Profile() {
                 <ImageUploader onUpload={setImage} onError={(e) => console.log(e)} />
             </View>
             <Button text='Сохранить' onPress={submitProfile} ></Button>
-            {Platform.OS === 'ios' && <Button text='Поделиться' onPress={shareProfile} ></Button>}
+            {Platform.OS === 'ios' && <Button text='Поделиться' style ={styles.btn} onPress={shareProfile} ></Button>}
         </View>
     )
 }
@@ -63,6 +63,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 30,
         paddingVertical: 20,
+    },
+    btn:{
+        marginVertical: 20
     }
 
 })

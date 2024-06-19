@@ -18,6 +18,11 @@ export type StudentCourseDescription = {
 	progress: Progress;
 };
 
+export type StudentCourses = {
+	my: StudentCourseDescription[];
+	other: StudentCourseDescription[];
+}
+
 export type Tariff = {
 	id: number;
 	name: string;

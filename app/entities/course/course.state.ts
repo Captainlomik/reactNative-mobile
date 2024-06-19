@@ -1,11 +1,11 @@
 import { atom } from 'jotai';
 import axios, { AxiosError } from 'axios';
-import { StudentCourseDescription } from './course.model';
+import { StudentCourseDescription, StudentCourses } from './course.model';
 import { authAtom } from '../auth/model/auth.state';
 import { API } from './api';
 
 export const courseAtom = atom<CourseState>({
-	courses: [],
+	courses: <StudentCourses>{},
 	isLoading: false,
 	error: null,
 });
@@ -19,13 +19,13 @@ export const loadCourseAtom = atom(
 			const { access_token } = await get(authAtom);
 			set(courseAtom, {
 				isLoading: true,
-				courses: [],
+				courses: <StudentCourses>{},
 				error: null,
 			});
-			const { data } = await axios.get<StudentCourseDescription[]>(API.my, {
-				params: {
-					studentCourse: 'dontMy',
-				},
+			const { data } = await axios.get<StudentCourses>(API.my, {
+				// params: {
+				// 	studentCourse: 'dontMy',
+				// },
 				headers: {
 					Authorization: `Bearer ${access_token}`,
 				},
@@ -39,7 +39,7 @@ export const loadCourseAtom = atom(
 			if (error instanceof AxiosError) {
 				set(courseAtom, {
 					isLoading: false,
-					courses: [],
+					courses: <StudentCourses>{},
 					error: error.response?.data.message,
 				});
 			}
@@ -48,7 +48,7 @@ export const loadCourseAtom = atom(
 );
 
 export interface CourseState {
-	courses: StudentCourseDescription[];
+	courses: StudentCourses;
 	isLoading: boolean;
 	error: string | null;
 }
