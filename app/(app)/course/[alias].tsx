@@ -1,18 +1,14 @@
 // /course/....
 
-import { useLocalSearchParams } from "expo-router";
-import { View, Text, StyleSheet } from "react-native";
+import { useLocalSearchParams } from 'expo-router';
+import { View, Text } from 'react-native';
 
-export default function CoursePage(){
-    const {alias} = useLocalSearchParams()
+export default function CoursePage() {
+	const { alias } = useLocalSearchParams();
 
-    return (
-        <View>
-            <Text>Страница курса {alias}</Text>
-        </View>
-    )
+	return (
+		<View>
+			<Text>Страница курса {alias}</Text>
+		</View>
+	);
 }
-
-const stylers = StyleSheet.create({
-
-})

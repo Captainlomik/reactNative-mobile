@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 import axios, { AxiosError } from 'axios';
-import { StudentCourseDescription, StudentCourses } from './course.model';
+import { StudentCourses } from './course.model';
 import { authAtom } from '../auth/model/auth.state';
 import { API } from './api';
 
