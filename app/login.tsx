@@ -13,10 +13,9 @@ import { useAtom } from 'jotai';
 import { router } from 'expo-router';
 import { useScreenOrientation } from '../shared/hooks';
 import { Orientation } from 'expo-screen-orientation';
+import { validationEmail } from '../shared/validation';
 
-function validationEmail(email:string){
-	return !/\S+@\S+\.\S+/.test(email)
-}
+
 export default function Login() {
 	const [localErorr, setLocalError] = useState<string | undefined>();
 	const [email, setEmail] = useState<string>();
