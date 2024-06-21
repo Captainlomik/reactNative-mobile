@@ -1,24 +1,35 @@
 {
   "expo": {
-    "name": "native-app",
-    "slug": "native-app",
+    "name": "purpleSchool",
+    "slug": "purpleschool",
+    "description": "Приложение для просмотра курсов",
     "version": "1.0.0",
+    "platform": [
+      "ios",
+      "android"
+    ],
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "backgroundColor": "#16171D",
+    "primaryColor": "#6C38CC",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#16171D"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "ru.purpleschool.firstapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -31,8 +42,23 @@
           "icon": "./assets/notification-icon.png",
           "color": "#16171D"
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Необходимо разрешение для выбора фото профиля"
+        }
       ]
     ],
-    "scheme": "purpleschool"
+    "scheme": "purpleschool",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "28e74c4b-4668-49c5-8797-145b3bc3f67e"
+      }
+    },
+    "owner": "captainlomik"
   }
 }
