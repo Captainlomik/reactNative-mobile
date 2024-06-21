@@ -14,6 +14,9 @@ import { router } from 'expo-router';
 import { useScreenOrientation } from '../shared/hooks';
 import { Orientation } from 'expo-screen-orientation';
 
+function validationEmail(email:string){
+	return !/\S+@\S+\.\S+/.test(email)
+}
 export default function Login() {
 	const [localErorr, setLocalError] = useState<string | undefined>();
 	const [email, setEmail] = useState<string>();
@@ -26,7 +29,7 @@ export default function Login() {
 			setLocalError('Не введен email');
 			return;
 		}
-		if (!/\S+@\S+\.\S+/.test(email)) {
+		if (validationEmail(email)) {
 			setLocalError('Email не соответсвует формату email@mail.ru');
 			return;
 		}
@@ -40,6 +43,7 @@ export default function Login() {
 		}
 		login({ email, password });
 	};
+
 
 	useEffect(() => {
 		if (localErorr) {
