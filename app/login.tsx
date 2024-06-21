@@ -93,7 +93,7 @@ export default function Login() {
 					</View>
 					<Button text="Войти" onPress={submit} isloading={isLoading} />
 				</View>
-				<CustomLink href={'/restore'} text={'Восстановить пароль'} />
+				<CustomLink href={'/restorej'} text={'Восстановить пароль'} />
 			</KeyboardAvoidingView>
 		</View>
 	);

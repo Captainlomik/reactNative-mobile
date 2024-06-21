@@ -5,3 +5,4 @@
 
 Запуск осуществляется командой `npm start`
 
+![](https://github.com/Captainlomik/reactNative-mobile/blob/master/project.gif)
