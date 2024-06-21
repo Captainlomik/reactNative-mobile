@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CustomLink /> smth 1`] = `
+<Text
+  href="/restorej"
+  onPress={[Function]}
+  role="link"
+  style={
+    {
+      "color": "#A97BFF",
+      "fontFamily": "FiraSans",
+      "fontSize": 18,
+    }
+  }
+>
+  <Text>
+    Восстановить пароль
+  </Text>
+</Text>
+`;
