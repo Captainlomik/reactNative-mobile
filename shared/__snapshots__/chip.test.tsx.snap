@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Chip /> simple chip 1`] = `
+<View
+  style={
+    {
+      "borderColor": "#4D5064",
+      "borderRadius": 17,
+      "borderWidth": 1,
+      "paddingHorizontal": 10,
+      "paddingVertical": 5,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#FAFAFA",
+        "fontFamily": "FiraSans",
+        "fontSize": 14,
+      }
+    }
+  >
+    hello ma old friend
+  </Text>
+</View>
+`;

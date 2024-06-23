@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CustomLink /> smth 1`] = `
+exports[`<CustomLink /> simple link 1`] = `
 <Text
   href="/restorej"
   onPress={[Function]}
